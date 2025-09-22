@@ -34,30 +34,31 @@ A web application for managing customers, products, orders, and inventory in a c
 ```bash
 git clone https://github.com/yourusername/coffee_roastery_app.git
 cd coffee_roastery_app
-Create and activate a virtual environment:
-
-bash
-Copy code
+```
+2. **Create and activate a virtual environment**:
+```bash
 python -m venv venv
 # Windows
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
+```
+
 Install dependencies:
 
-bash
-Copy code
+```bash
 pip install -r requirements.txt
+```
 Run the app:
 
-bash
-Copy code
+```bash
 uvicorn app.main:app --reload
+```
 Open in your browser:
 
-cpp
-Copy code
+```cpp
 http://127.0.0.1:8000
+```
 📝 Usage
 Navigate using the top menu to switch between Customers, Products, Orders, and Inventory.
 
