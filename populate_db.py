@@ -32,16 +32,16 @@ products = [
 ]
 
 orders = [
-    {"customer_id": 1, "product_name": "Ethiopian Yirgacheffe", "quantity": 2},
-    {"customer_id": 2, "product_name": "Colombian Supremo", "quantity": 1},
-    {"customer_id": 3, "product_name": "Guatemalan Antigua", "quantity": 3},
-    {"customer_id": 4, "product_name": "Kenyan AA", "quantity": 1},
-    {"customer_id": 5, "product_name": "Brazil Santos", "quantity": 2},
-    {"customer_id": 6, "product_name": "Sumatra Mandheling", "quantity": 1},
-    {"customer_id": 7, "product_name": "Costa Rican Tarrazu", "quantity": 2},
-    {"customer_id": 8, "product_name": "Panama Geisha", "quantity": 1},
-    {"customer_id": 9, "product_name": "Honduras Marcala", "quantity": 3},
-    {"customer_id": 10, "product_name": "Rwanda Bourbon", "quantity": 2}
+    {"customer_id": 1, "product_id": 1, "quantity": 2},
+    {"customer_id": 2, "product_id": 2, "quantity": 1},
+    {"customer_id": 3, "product_id": 3, "quantity": 3},
+    {"customer_id": 4, "product_id": 4, "quantity": 1},
+    {"customer_id": 5, "product_id": 5, "quantity": 2},
+    {"customer_id": 6, "product_id": 6, "quantity": 1},
+    {"customer_id": 7, "product_id": 7, "quantity": 2},
+    {"customer_id": 8, "product_id": 8, "quantity": 1},
+    {"customer_id": 9, "product_id": 9, "quantity": 3},
+    {"customer_id": 10, "product_id": 10, "quantity": 2}
 ]
 
 # --- Populate database ---
@@ -53,19 +53,19 @@ def populate():
         db_customer = models.Customer(name=c["name"], email=c["email"])
         db.add(db_customer)
     db.commit()
-    
+    db.refresh(db_customer)
     # Add products
     for p in products:
-        db_product = models.Products(name=p["name"], description=p["description"], price=p["price"])
+        db_product = models.Product(name=p["name"], description=p["description"], price=p["price"])
         db.add(db_product)
     db.commit()
-    
+    db.refresh(db_product)
     # Add orders
     for o in orders:
-        db_order = models.Order(customer_id=o["customer_id"], product_id=o["product_name"], quantity=o["quantity"])
+        db_order = models.Order(customer_id=o["customer_id"], product_id=o["product_id"], quantity=o["quantity"])
         db.add(db_order)
     db.commit()
-    
+    db.refresh(db_order)
     db.close()
     print("Database populated successfully!")
 
